@@ -1,0 +1,16 @@
+<app>
+  <id>othello</id>
+  <name>Othello!</name>
+  <version>1.0</version>
+  <description>Play Othello on your couch!</description>
+  <thumb>http://eluzions.com/Recreation/Games/Board/othello.gif</thumb>
+  <repository>http://dir.boxee.tv/apps</repository>
+  <media>general</media>
+  <copyright>Princeton HackNY</copyright>
+  <email>dbieber@princeton.edu</email>
+  <type>skin</type>
+  <startWindow>start</startWindow>
+  <platform>all</platform>
+  <minversion>0.9.21</minversion>
+  <test-app>true</test-app>
+</app>

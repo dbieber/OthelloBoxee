@@ -1,0 +1,4097 @@
+<?xml version="1.0"?>
+<window type="window" id="14000">
+   <defaultcontrol always="true">120</defaultcontrol>
+   <allowoverlay>yes</allowoverlay>
+   <controls>
+      <control type="group">
+         <animation type="WindowOpen">
+            <effect type="fade" start="0" end="100" time="200" />
+         </animation>
+         <control type="image">
+            <width>1280</width>
+            <height>720</height>
+            <texture>ba_cat.jpg</texture>
+         </control>
+         <control type="image">
+            <posy>90</posy>
+            <width>1280</width>
+            <height>540</height>
+            <texture>ba_overlay.png</texture>
+         </control>
+         <control type="label" id="120">
+            <posy>28</posy>
+            <posx>80</posx>
+            <width>400</width>
+            <align>left</align>
+            <font>font40</font>
+            <color>white</color>
+            <label>Othello!</label>
+         </control>
+         <control type="label" id="101">
+            <posy>550</posy>
+            <posx>80</posx>
+            <width>400</width>
+            <align>left</align>
+            <font>font40</font>
+            <color>white</color>
+            <label>Player 1</label>
+         </control>
+         <control type="label">
+            <posy>603</posy>
+            <posx>1260</posx>
+            <width>400</width>
+            <align>right</align>
+            <font>font21</font>
+            <color>white</color>
+            <label>Get Off the Couch[CR]Developer's Edition[CR]Princeton HackNY</label>
+         </control>
+         <control type="image">
+            <posy>104</posy>
+            <posx>384</posx>
+            <width>512</width>
+            <height>512</height>
+            <texture>board.jpg</texture>
+         </control>
+         
+         
+         <!--------------START MESSYNESSES !-->
+
+
+         <control type="image" id="11">
+            <posx>382</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="111">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>382</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(111).SetLabel(turn)
+mc.GetActiveWindow().GetImage(11).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 1
+y0 = 1
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="12">
+            <posx>382</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="112">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>382</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(112).SetLabel(turn)
+mc.GetActiveWindow().GetImage(12).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 1
+y0 = 2
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="13">
+            <posx>382</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="113">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>382</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(113).SetLabel(turn)
+mc.GetActiveWindow().GetImage(13).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 1
+y0 = 3
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="14">
+            <posx>382</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="114">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>382</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(114).SetLabel(turn)
+mc.GetActiveWindow().GetImage(14).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 1
+y0 = 4
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="15">
+            <posx>382</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="115">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>382</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(115).SetLabel(turn)
+mc.GetActiveWindow().GetImage(15).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 1
+y0 = 5
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="16">
+            <posx>382</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="116">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>382</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(116).SetLabel(turn)
+mc.GetActiveWindow().GetImage(16).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 1
+y0 = 6
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="17">
+            <posx>382</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="117">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>382</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(117).SetLabel(turn)
+mc.GetActiveWindow().GetImage(17).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 1
+y0 = 7
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="18">
+            <posx>382</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="118">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>382</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(118).SetLabel(turn)
+mc.GetActiveWindow().GetImage(18).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 1
+y0 = 8
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="21">
+            <posx>446</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="121">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>446</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(121).SetLabel(turn)
+mc.GetActiveWindow().GetImage(21).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 2
+y0 = 1
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="22">
+            <posx>446</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="122">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>446</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(122).SetLabel(turn)
+mc.GetActiveWindow().GetImage(22).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 2
+y0 = 2
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="23">
+            <posx>446</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="123">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>446</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(123).SetLabel(turn)
+mc.GetActiveWindow().GetImage(23).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 2
+y0 = 3
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="24">
+            <posx>446</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="124">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>446</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(124).SetLabel(turn)
+mc.GetActiveWindow().GetImage(24).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 2
+y0 = 4
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="25">
+            <posx>446</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="125">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>446</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(125).SetLabel(turn)
+mc.GetActiveWindow().GetImage(25).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 2
+y0 = 5
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="26">
+            <posx>446</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="126">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>446</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(126).SetLabel(turn)
+mc.GetActiveWindow().GetImage(26).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 2
+y0 = 6
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="27">
+            <posx>446</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="127">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>446</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(127).SetLabel(turn)
+mc.GetActiveWindow().GetImage(27).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 2
+y0 = 7
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="28">
+            <posx>446</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="128">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>446</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(128).SetLabel(turn)
+mc.GetActiveWindow().GetImage(28).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 2
+y0 = 8
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="31">
+            <posx>510</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="131">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>510</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(131).SetLabel(turn)
+mc.GetActiveWindow().GetImage(31).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 3
+y0 = 1
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="32">
+            <posx>510</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="132">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>510</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(132).SetLabel(turn)
+mc.GetActiveWindow().GetImage(32).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 3
+y0 = 2
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="33">
+            <posx>510</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="133">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>510</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(133).SetLabel(turn)
+mc.GetActiveWindow().GetImage(33).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 3
+y0 = 3
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="34">
+            <posx>510</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="134">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>510</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(134).SetLabel(turn)
+mc.GetActiveWindow().GetImage(34).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 3
+y0 = 4
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="35">
+            <posx>510</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="135">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>510</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(135).SetLabel(turn)
+mc.GetActiveWindow().GetImage(35).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 3
+y0 = 5
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="36">
+            <posx>510</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="136">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>510</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(136).SetLabel(turn)
+mc.GetActiveWindow().GetImage(36).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 3
+y0 = 6
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="37">
+            <posx>510</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="137">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>510</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(137).SetLabel(turn)
+mc.GetActiveWindow().GetImage(37).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 3
+y0 = 7
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="38">
+            <posx>510</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="138">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>510</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(138).SetLabel(turn)
+mc.GetActiveWindow().GetImage(38).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 3
+y0 = 8
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="41">
+            <posx>574</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="141">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>574</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(141).SetLabel(turn)
+mc.GetActiveWindow().GetImage(41).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 4
+y0 = 1
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="42">
+            <posx>574</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="142">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>574</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(142).SetLabel(turn)
+mc.GetActiveWindow().GetImage(42).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 4
+y0 = 2
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="43">
+            <posx>574</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="143">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>574</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(143).SetLabel(turn)
+mc.GetActiveWindow().GetImage(43).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 4
+y0 = 3
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="44">
+            <posx>574</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="144">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>574</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(144).SetLabel(turn)
+mc.GetActiveWindow().GetImage(44).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 4
+y0 = 4
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="45">
+            <posx>574</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="145">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>574</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(145).SetLabel(turn)
+mc.GetActiveWindow().GetImage(45).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 4
+y0 = 5
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="46">
+            <posx>574</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="146">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>574</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(146).SetLabel(turn)
+mc.GetActiveWindow().GetImage(46).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 4
+y0 = 6
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="47">
+            <posx>574</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="147">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>574</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(147).SetLabel(turn)
+mc.GetActiveWindow().GetImage(47).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 4
+y0 = 7
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="48">
+            <posx>574</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="148">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>574</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(148).SetLabel(turn)
+mc.GetActiveWindow().GetImage(48).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 4
+y0 = 8
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="51">
+            <posx>638</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="151">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>638</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(151).SetLabel(turn)
+mc.GetActiveWindow().GetImage(51).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 5
+y0 = 1
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="52">
+            <posx>638</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="152">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>638</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(152).SetLabel(turn)
+mc.GetActiveWindow().GetImage(52).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 5
+y0 = 2
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="53">
+            <posx>638</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="153">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>638</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(153).SetLabel(turn)
+mc.GetActiveWindow().GetImage(53).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 5
+y0 = 3
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="54">
+            <posx>638</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="154">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>638</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(154).SetLabel(turn)
+mc.GetActiveWindow().GetImage(54).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 5
+y0 = 4
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="55">
+            <posx>638</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="155">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>638</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(155).SetLabel(turn)
+mc.GetActiveWindow().GetImage(55).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 5
+y0 = 5
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="56">
+            <posx>638</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="156">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>638</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(156).SetLabel(turn)
+mc.GetActiveWindow().GetImage(56).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 5
+y0 = 6
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="57">
+            <posx>638</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="157">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>638</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(157).SetLabel(turn)
+mc.GetActiveWindow().GetImage(57).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 5
+y0 = 7
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="58">
+            <posx>638</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="158">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>638</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(158).SetLabel(turn)
+mc.GetActiveWindow().GetImage(58).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 5
+y0 = 8
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="61">
+            <posx>702</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="161">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>702</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(161).SetLabel(turn)
+mc.GetActiveWindow().GetImage(61).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 6
+y0 = 1
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="62">
+            <posx>702</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="162">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>702</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(162).SetLabel(turn)
+mc.GetActiveWindow().GetImage(62).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 6
+y0 = 2
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="63">
+            <posx>702</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="163">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>702</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(163).SetLabel(turn)
+mc.GetActiveWindow().GetImage(63).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 6
+y0 = 3
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="64">
+            <posx>702</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="164">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>702</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(164).SetLabel(turn)
+mc.GetActiveWindow().GetImage(64).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 6
+y0 = 4
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="65">
+            <posx>702</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="165">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>702</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(165).SetLabel(turn)
+mc.GetActiveWindow().GetImage(65).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 6
+y0 = 5
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="66">
+            <posx>702</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="166">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>702</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(166).SetLabel(turn)
+mc.GetActiveWindow().GetImage(66).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 6
+y0 = 6
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="67">
+            <posx>702</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="167">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>702</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(167).SetLabel(turn)
+mc.GetActiveWindow().GetImage(67).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 6
+y0 = 7
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="68">
+            <posx>702</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="168">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>702</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(168).SetLabel(turn)
+mc.GetActiveWindow().GetImage(68).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 6
+y0 = 8
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="71">
+            <posx>766</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="171">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>766</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(171).SetLabel(turn)
+mc.GetActiveWindow().GetImage(71).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 7
+y0 = 1
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="72">
+            <posx>766</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="172">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>766</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(172).SetLabel(turn)
+mc.GetActiveWindow().GetImage(72).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 7
+y0 = 2
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="73">
+            <posx>766</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="173">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>766</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(173).SetLabel(turn)
+mc.GetActiveWindow().GetImage(73).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 7
+y0 = 3
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="74">
+            <posx>766</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="174">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>766</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(174).SetLabel(turn)
+mc.GetActiveWindow().GetImage(74).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 7
+y0 = 4
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="75">
+            <posx>766</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="175">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>766</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(175).SetLabel(turn)
+mc.GetActiveWindow().GetImage(75).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 7
+y0 = 5
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="76">
+            <posx>766</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="176">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>766</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(176).SetLabel(turn)
+mc.GetActiveWindow().GetImage(76).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 7
+y0 = 6
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="77">
+            <posx>766</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="177">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>766</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(177).SetLabel(turn)
+mc.GetActiveWindow().GetImage(77).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 7
+y0 = 7
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="78">
+            <posx>766</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="178">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>766</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(178).SetLabel(turn)
+mc.GetActiveWindow().GetImage(78).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 7
+y0 = 8
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="81">
+            <posx>830</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="181">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>830</posx>
+            <posy>102</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(181).SetLabel(turn)
+mc.GetActiveWindow().GetImage(81).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 8
+y0 = 1
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="82">
+            <posx>830</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="182">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>830</posx>
+            <posy>166</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(182).SetLabel(turn)
+mc.GetActiveWindow().GetImage(82).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 8
+y0 = 2
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="83">
+            <posx>830</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="183">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>830</posx>
+            <posy>230</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(183).SetLabel(turn)
+mc.GetActiveWindow().GetImage(83).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 8
+y0 = 3
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="84">
+            <posx>830</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="184">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>830</posx>
+            <posy>294</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(184).SetLabel(turn)
+mc.GetActiveWindow().GetImage(84).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 8
+y0 = 4
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="85">
+            <posx>830</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="185">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>830</posx>
+            <posy>358</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(185).SetLabel(turn)
+mc.GetActiveWindow().GetImage(85).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 8
+y0 = 5
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="86">
+            <posx>830</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="186">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>830</posx>
+            <posy>422</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(186).SetLabel(turn)
+mc.GetActiveWindow().GetImage(86).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 8
+y0 = 6
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="87">
+            <posx>830</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="187">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>830</posx>
+            <posy>486</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(187).SetLabel(turn)
+mc.GetActiveWindow().GetImage(87).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 8
+y0 = 7
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+         <control type="image" id="88">
+            <posx>830</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>blank.png</texture>
+         </control>
+         <control type="label" id="188">
+            <posx>-100</posx>
+            <posy>-100</posy>
+            <width>6</width>
+            <height>6</height>
+            <label>C</label>
+         </control>
+         <control type="button">
+            <posx>830</posx>
+            <posy>550</posy>
+            <width>64</width>
+            <height>64</height>
+            <onclick lang="python"><![CDATA[
+turn = mc.GetActiveWindow().GetLabel(101).GetLabel()
+img = 'reversiblack.png'
+if turn == "Player 1":
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 2")
+    img = 'reversiwhite.png'
+else:
+    mc.GetActiveWindow().GetLabel(101).SetLabel("Player 1")
+    
+mc.GetActiveWindow().GetLabel(188).SetLabel(turn)
+mc.GetActiveWindow().GetImage(88).SetTexture(img)
+
+dirs = [[1,0],[1,1],[1,-1],[0,-1],[0,1],[-1,-1],[-1,1],[-1,0]]
+x0 = 8
+y0 = 8
+for d in dirs:
+    x = x0
+    y = y0
+    cont = True
+    tu = False
+    while cont:
+        x += d[0]
+        y += d[1]
+        if x==0 or x>8 or y==0 or y>8:
+            break
+        id = 100+10*x+y
+        t = mc.GetActiveWindow().GetLabel(id).GetLabel()
+        if t == "C":
+            cont = False
+        if t == turn:
+            tu = True
+            cont = False
+    if tu:
+        while x != x0 or y != y0:    
+            x -= d[0]
+            y -= d[1]
+            id = 100+10*x+y
+            mc.GetActiveWindow().GetImage(id-100).SetTexture(img)
+            mc.GetActiveWindow().GetLabel(id).SetLabel(turn)
+            
+]]></onclick>
+         </control>
+
+
+
+         <!--------------END   MESSYNESSES !-->
+         
+      </control>
+   </controls>
+</window>
