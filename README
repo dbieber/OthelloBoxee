@@ -1,1 +1,7 @@
 Othello is a native Boxee app made at HackNY Fall 2011.
+
+xmlmaker.py produces the some of xml for main.xml
+The reason for this silly structure is that Boxee python has no state,
+preventing you from keeping game state and defining reusable functions.
+And so we use ui elements to create state. And the logic for each ui element
+is specified explicitly. The xmlmaker.py script writes this logic.
